@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.lstClips = new System.Windows.Forms.ListView();
             this.colTimestamp = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -40,8 +41,10 @@
             this.btnStopServer = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btnCopy = new System.Windows.Forms.ToolStripButton();
+            this.clipBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.statusStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.clipBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // lstClips
@@ -52,13 +55,19 @@
             this.colTimestamp,
             this.colData,
             this.colDevice});
+            this.lstClips.FullRowSelect = true;
+            this.lstClips.GridLines = true;
+            this.lstClips.LabelWrap = false;
             this.lstClips.Location = new System.Drawing.Point(0, 25);
             this.lstClips.Margin = new System.Windows.Forms.Padding(0);
+            this.lstClips.MultiSelect = false;
             this.lstClips.Name = "lstClips";
             this.lstClips.Size = new System.Drawing.Size(604, 317);
             this.lstClips.TabIndex = 0;
             this.lstClips.UseCompatibleStateImageBehavior = false;
             this.lstClips.View = System.Windows.Forms.View.Details;
+            this.lstClips.VirtualMode = true;
+            this.lstClips.RetrieveVirtualItem += new System.Windows.Forms.RetrieveVirtualItemEventHandler(this.lstClips_RetrieveVirtualItem);
             // 
             // colTimestamp
             // 
@@ -112,6 +121,7 @@
             this.btnStartServer.Name = "btnStartServer";
             this.btnStartServer.Size = new System.Drawing.Size(23, 22);
             this.btnStartServer.Text = "Start Server";
+            this.btnStartServer.Click += new System.EventHandler(this.btnStartServer_Click);
             // 
             // btnStopServer
             // 
@@ -121,6 +131,7 @@
             this.btnStopServer.Name = "btnStopServer";
             this.btnStopServer.Size = new System.Drawing.Size(23, 22);
             this.btnStopServer.Text = "Stop Server";
+            this.btnStopServer.Click += new System.EventHandler(this.btnStopServer_Click);
             // 
             // toolStripSeparator1
             // 
@@ -135,6 +146,11 @@
             this.btnCopy.Name = "btnCopy";
             this.btnCopy.Size = new System.Drawing.Size(23, 22);
             this.btnCopy.Text = "Copy to Clipboard";
+            this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);
+            // 
+            // clipBindingSource
+            // 
+            this.clipBindingSource.DataSource = typeof(CopyStand.Clipboard.Clip);
             // 
             // MainForm
             // 
@@ -150,6 +166,7 @@
             this.statusStrip.PerformLayout();
             this.toolStrip.ResumeLayout(false);
             this.toolStrip.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.clipBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -168,6 +185,7 @@
         private System.Windows.Forms.ToolStripButton btnStopServer;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton btnCopy;
+        private System.Windows.Forms.BindingSource clipBindingSource;
 
     }
 }
