@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Forms;
 
-namespace CopyStand
+namespace CopyStand.Clipboard
 {
     /// <summary>
     /// Data object containing an instance of a clipboard data copied event.
     /// </summary>
-    class Clip
+    public class Clip
     {
         private DateTime _timestamp;
         private string _data;
@@ -31,6 +32,15 @@ namespace CopyStand
         /// </summary>
         /// <param name="data">Data that was copied to the clipboard.</param>
         public Clip(string data) : this(DateTime.Now, data, "localhost") {}
+
+        /// <summary>
+        /// Converts the cliboard data object into a ListView item.
+        /// </summary>
+        /// <returns>ListViewItem representing this clipboard item.</returns>
+        public ListViewItem ToListViewItem()
+        {
+            return new ListViewItem(new string[] { Timestamp.ToLongTimeString(), Data, Device });
+        }
 
         /// <summary>
         /// When the clipboard event happened.
