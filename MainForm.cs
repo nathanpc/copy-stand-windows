@@ -30,6 +30,22 @@ namespace CopyStand
         }
 
         /// <summary>
+        /// Copies the currently selected item data, if there is one, to the clipboard.
+        /// </summary>
+        public void CopySelectedItem()
+        {
+            // Do we have anything selected to put on the clipboard?
+            if (lstClips.SelectedIndices.Count == 0)
+                return;
+
+            // Copy the currently selected item to the clipboard;
+            Clip clip = manager.Clips[lstClips.SelectedIndices[0]];
+            System.Windows.Forms.Clipboard.SetText(clip.Data);
+        }
+
+        #region Event Handlers
+
+        /// <summary>
         /// Event that happens whenever the clipboard manager history gets updated.
         /// </summary>
         /// <param name="sender">The clipboard manager object.</param>
@@ -64,7 +80,14 @@ namespace CopyStand
 
         private void btnCopy_Click(object sender, EventArgs e)
         {
-            // TODO: Copy the currently selected item to the clipboard.
+            CopySelectedItem();
         }
+
+        private void lstClips_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            CopySelectedItem();
+        }
+
+        #endregion
     }
 }

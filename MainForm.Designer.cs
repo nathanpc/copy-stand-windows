@@ -68,6 +68,7 @@
             this.lstClips.View = System.Windows.Forms.View.Details;
             this.lstClips.VirtualMode = true;
             this.lstClips.RetrieveVirtualItem += new System.Windows.Forms.RetrieveVirtualItemEventHandler(this.lstClips_RetrieveVirtualItem);
+            this.lstClips.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lstClips_MouseDoubleClick);
             // 
             // colTimestamp
             // 
