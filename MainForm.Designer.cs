@@ -28,20 +28,147 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            this.lstClips = new System.Windows.Forms.ListView();
+            this.colTimestamp = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colData = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colDevice = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.statusStrip = new System.Windows.Forms.StatusStrip();
+            this.lblServerStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStrip = new System.Windows.Forms.ToolStrip();
+            this.btnStartServer = new System.Windows.Forms.ToolStripButton();
+            this.btnStopServer = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnCopy = new System.Windows.Forms.ToolStripButton();
+            this.statusStrip.SuspendLayout();
+            this.toolStrip.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // lstClips
+            // 
+            this.lstClips.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.lstClips.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.colTimestamp,
+            this.colData,
+            this.colDevice});
+            this.lstClips.Location = new System.Drawing.Point(0, 25);
+            this.lstClips.Margin = new System.Windows.Forms.Padding(0);
+            this.lstClips.Name = "lstClips";
+            this.lstClips.Size = new System.Drawing.Size(604, 317);
+            this.lstClips.TabIndex = 0;
+            this.lstClips.UseCompatibleStateImageBehavior = false;
+            this.lstClips.View = System.Windows.Forms.View.Details;
+            // 
+            // colTimestamp
+            // 
+            this.colTimestamp.Text = "Timestamp";
+            this.colTimestamp.Width = 100;
+            // 
+            // colData
+            // 
+            this.colData.Text = "Copied Data";
+            this.colData.Width = 400;
+            // 
+            // colDevice
+            // 
+            this.colDevice.Text = "Device";
+            this.colDevice.Width = 100;
+            // 
+            // statusStrip
+            // 
+            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.lblServerStatus});
+            this.statusStrip.Location = new System.Drawing.Point(0, 342);
+            this.statusStrip.Name = "statusStrip";
+            this.statusStrip.Size = new System.Drawing.Size(604, 22);
+            this.statusStrip.TabIndex = 1;
+            this.statusStrip.Text = "statusStrip1";
+            // 
+            // lblServerStatus
+            // 
+            this.lblServerStatus.Name = "lblServerStatus";
+            this.lblServerStatus.Size = new System.Drawing.Size(74, 17);
+            this.lblServerStatus.Text = "Server Status";
+            // 
+            // toolStrip
+            // 
+            this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnStartServer,
+            this.btnStopServer,
+            this.toolStripSeparator1,
+            this.btnCopy});
+            this.toolStrip.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip.Name = "toolStrip";
+            this.toolStrip.Size = new System.Drawing.Size(604, 25);
+            this.toolStrip.TabIndex = 2;
+            this.toolStrip.Text = "toolStrip1";
+            // 
+            // btnStartServer
+            // 
+            this.btnStartServer.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnStartServer.Image = ((System.Drawing.Image)(resources.GetObject("btnStartServer.Image")));
+            this.btnStartServer.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnStartServer.Name = "btnStartServer";
+            this.btnStartServer.Size = new System.Drawing.Size(23, 22);
+            this.btnStartServer.Text = "Start Server";
+            // 
+            // btnStopServer
+            // 
+            this.btnStopServer.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnStopServer.Image = ((System.Drawing.Image)(resources.GetObject("btnStopServer.Image")));
+            this.btnStopServer.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnStopServer.Name = "btnStopServer";
+            this.btnStopServer.Size = new System.Drawing.Size(23, 22);
+            this.btnStopServer.Text = "Stop Server";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // btnCopy
+            // 
+            this.btnCopy.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnCopy.Image = ((System.Drawing.Image)(resources.GetObject("btnCopy.Image")));
+            this.btnCopy.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnCopy.Name = "btnCopy";
+            this.btnCopy.Size = new System.Drawing.Size(23, 22);
+            this.btnCopy.Text = "Copy to Clipboard";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(541, 307);
+            this.ClientSize = new System.Drawing.Size(604, 364);
+            this.Controls.Add(this.toolStrip);
+            this.Controls.Add(this.statusStrip);
+            this.Controls.Add(this.lstClips);
             this.Name = "MainForm";
             this.Text = "Copy Stand";
+            this.statusStrip.ResumeLayout(false);
+            this.statusStrip.PerformLayout();
+            this.toolStrip.ResumeLayout(false);
+            this.toolStrip.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
+
+        private System.Windows.Forms.ListView lstClips;
+        private System.Windows.Forms.ColumnHeader colTimestamp;
+        private System.Windows.Forms.ColumnHeader colData;
+        private System.Windows.Forms.ColumnHeader colDevice;
+        private System.Windows.Forms.StatusStrip statusStrip;
+        private System.Windows.Forms.ToolStrip toolStrip;
+        private System.Windows.Forms.ToolStripStatusLabel lblServerStatus;
+        private System.Windows.Forms.ToolStripButton btnStartServer;
+        private System.Windows.Forms.ToolStripButton btnStopServer;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripButton btnCopy;
+
     }
 }
 
