@@ -115,7 +115,7 @@
             // btnStartServer
             // 
             this.btnStartServer.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnStartServer.Image = Properties.Resources.Vista_Start.ToBitmap();
+            this.btnStartServer.Image = ((System.Drawing.Image)(resources.GetObject("btnStartServer.Image")));
             this.btnStartServer.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnStartServer.Name = "btnStartServer";
             this.btnStartServer.Size = new System.Drawing.Size(23, 22);
@@ -125,7 +125,7 @@
             // btnStopServer
             // 
             this.btnStopServer.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnStopServer.Image = Properties.Resources.Vista_Stop.ToBitmap();
+            this.btnStopServer.Image = ((System.Drawing.Image)(resources.GetObject("btnStopServer.Image")));
             this.btnStopServer.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnStopServer.Name = "btnStopServer";
             this.btnStopServer.Size = new System.Drawing.Size(23, 22);
@@ -140,7 +140,7 @@
             // btnCopy
             // 
             this.btnCopy.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnCopy.Image = Properties.Resources.Vista_ClipAdd.ToBitmap();
+            this.btnCopy.Image = ((System.Drawing.Image)(resources.GetObject("btnCopy.Image")));
             this.btnCopy.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnCopy.Name = "btnCopy";
             this.btnCopy.Size = new System.Drawing.Size(23, 22);
