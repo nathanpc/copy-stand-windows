@@ -47,8 +47,10 @@
             // 
             // lstClips
             // 
-            this.lstClips.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            this.lstClips.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lstClips.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.lstClips.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.colTimestamp,
             this.colData,
@@ -76,7 +78,7 @@
             // colData
             // 
             this.colData.Text = "Copied Data";
-            this.colData.Width = 400;
+            this.colData.Width = 404;
             // 
             // colDevice
             // 
