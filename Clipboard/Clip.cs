@@ -31,7 +31,7 @@ namespace CopyStand.Clipboard
         /// Constructs a brand new clipboard data object that was copied by ourselves, right now.
         /// </summary>
         /// <param name="data">Data that was copied to the clipboard.</param>
-        public Clip(string data) : this(DateTime.Now, data, "localhost") {}
+        public Clip(string data) : this(DateTime.Now, data, "localhost") { }
 
         /// <summary>
         /// Creates a new clipboard data object from data contained within the system's clipboard.
@@ -51,10 +51,16 @@ namespace CopyStand.Clipboard
         /// <returns>Clip object with data from clipboard.</returns>
         public static Clip FromClipboard(IDataObject data)
         {
+            // Do we have textual data available?
             if (!data.GetDataPresent("System.String"))
-                throw new Exception("No textual data available in clipboard");
+                throw new Exception("No textual data available in the clipboard");
 
-            return new Clip((string)data.GetData("System.String"));
+            // Get the string from the data and ensure there is something there for us.
+            string str = (string)data.GetData("System.String");
+            if (str == null)
+                throw new Exception("No text contained in the data from the clipboard");
+
+            return new Clip(str);
         }
 
         /// <summary>
