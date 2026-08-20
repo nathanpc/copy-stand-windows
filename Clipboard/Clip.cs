@@ -31,7 +31,7 @@ namespace CopyStand.Clipboard
         /// Constructs a brand new clipboard data object that was copied by ourselves, right now.
         /// </summary>
         /// <param name="data">Data that was copied to the clipboard.</param>
-        public Clip(string data) : this(DateTime.Now, data, "localhost") { }
+        public Clip(string data) : this(DateTime.Now, data, Environment.MachineName) { }
 
         /// <summary>
         /// Creates a new clipboard data object from data contained within the system's clipboard.
