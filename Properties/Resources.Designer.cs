@@ -63,6 +63,16 @@ namespace CopyStand.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
+        internal static System.Drawing.Icon AppIconFluent {
+            get {
+                object obj = ResourceManager.GetObject("AppIconFluent", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
         internal static System.Drawing.Icon Vista_ClipAdd {
             get {
                 object obj = ResourceManager.GetObject("Vista_ClipAdd", resourceCulture);
