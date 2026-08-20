@@ -91,7 +91,7 @@
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Size = new System.Drawing.Size(604, 22);
             this.statusStrip.TabIndex = 1;
-            this.statusStrip.Text = "statusStrip1";
+            this.statusStrip.Text = "Status Strip";
             // 
             // lblServerStatus
             // 
@@ -110,12 +110,12 @@
             this.toolStrip.Name = "toolStrip";
             this.toolStrip.Size = new System.Drawing.Size(604, 25);
             this.toolStrip.TabIndex = 2;
-            this.toolStrip.Text = "toolStrip1";
+            this.toolStrip.Text = "Tool Strip";
             // 
             // btnStartServer
             // 
             this.btnStartServer.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnStartServer.Image = ((System.Drawing.Image)(resources.GetObject("btnStartServer.Image")));
+            this.btnStartServer.Image = Properties.Resources.Vista_Start.ToBitmap();
             this.btnStartServer.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnStartServer.Name = "btnStartServer";
             this.btnStartServer.Size = new System.Drawing.Size(23, 22);
@@ -125,7 +125,7 @@
             // btnStopServer
             // 
             this.btnStopServer.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnStopServer.Image = ((System.Drawing.Image)(resources.GetObject("btnStopServer.Image")));
+            this.btnStopServer.Image = Properties.Resources.Vista_Stop.ToBitmap();
             this.btnStopServer.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnStopServer.Name = "btnStopServer";
             this.btnStopServer.Size = new System.Drawing.Size(23, 22);
@@ -140,7 +140,7 @@
             // btnCopy
             // 
             this.btnCopy.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnCopy.Image = ((System.Drawing.Image)(resources.GetObject("btnCopy.Image")));
+            this.btnCopy.Image = Properties.Resources.Vista_ClipAdd.ToBitmap();
             this.btnCopy.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnCopy.Name = "btnCopy";
             this.btnCopy.Size = new System.Drawing.Size(23, 22);
