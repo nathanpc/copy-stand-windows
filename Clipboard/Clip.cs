@@ -36,13 +36,25 @@ namespace CopyStand.Clipboard
         /// <summary>
         /// Creates a new clipboard data object from data contained within the system's clipboard.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Clip object with data from clipboard.</returns>
         public static Clip FromClipboard()
         {
             if (!System.Windows.Forms.Clipboard.ContainsText())
                 throw new Exception("Data in clipboard does not contain text");
 
             return new Clip(System.Windows.Forms.Clipboard.GetText());
+        }
+
+        /// <summary>
+        /// Creates a new clipboard data object from data contained within the system's clipboard.
+        /// </summary>
+        /// <returns>Clip object with data from clipboard.</returns>
+        public static Clip FromClipboard(IDataObject data)
+        {
+            if (!data.GetDataPresent("System.String"))
+                throw new Exception("No textual data available in clipboard");
+
+            return new Clip((string)data.GetData("System.String"));
         }
 
         /// <summary>

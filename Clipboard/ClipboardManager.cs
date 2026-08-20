@@ -12,7 +12,6 @@ namespace CopyStand.Clipboard
     public class ClipboardManager
     {
         private List<Clip> _clips;
-        private Thread watcherThread;
 
         public event EventHandler ClipsListUpdated;
 
@@ -22,21 +21,6 @@ namespace CopyStand.Clipboard
         public ClipboardManager()
         {
             _clips = new List<Clip>();
-            watcherThread = new Thread(ClipboardWatcherThread);
-        }
-
-        /// <summary>
-        /// Checks if the clipboard has a new item for us.
-        /// </summary>
-        /// <returns>True if the clipboard has been updated, false otherwise.</returns>
-        public bool ClipboardWasUpdated()
-        {
-            // Do we have any piece of text to check for?
-            if (!System.Windows.Forms.Clipboard.ContainsText())
-                return false;
-
-            // Check if the current text in the clipboard is the same that we have.
-            return System.Windows.Forms.Clipboard.GetText() != Clips[0].Data;
         }
 
         /// <summary>
@@ -51,32 +35,21 @@ namespace CopyStand.Clipboard
         }
 
         /// <summary>
-        /// Starts the clipboard watcher thread.
+        /// Handles changes to the clipboard automatically.
         /// </summary>
-        public void StartWatcher()
+        /// <param name="data">Data object from the system's clipboard.</param>
+        /// <returns>True if we had text in the clipboard and it was added to our
+        /// history, false otherwise.</returns>
+        public bool HandleClipboardChanged(IDataObject data)
         {
-            watcherThread.Start();
-        }
-
-        /// <summary>
-        /// Stops the clipboard watcher thread.
-        /// </summary>
-        public void StopWatcher()
-        {
-            watcherThread.Abort();
-        }
-
-        /// <summary>
-        /// Thread function responsible for monitoring the system clipboard for changes.
-        /// </summary>
-        /// <param name="obj">Ignored.</param>
-        private void ClipboardWatcherThread(object obj) {
-            while (true)
+            try
             {
-                if (ClipboardWasUpdated())
-                    AddItem(Clip.FromClipboard());
-
-                Thread.Sleep(1000);
+                AddItem(Clip.FromClipboard(data));
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
             }
         }
 

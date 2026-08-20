@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.lstClips = new System.Windows.Forms.ListView();
             this.colTimestamp = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -41,10 +40,9 @@
             this.btnStopServer = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btnCopy = new System.Windows.Forms.ToolStripButton();
-            this.clipBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.clipboardMonitor = new CopyStand.Clipboard.ClipboardMonitor();
             this.statusStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.clipBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // lstClips
@@ -149,15 +147,23 @@
             this.btnCopy.Text = "Copy to Clipboard";
             this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);
             // 
-            // clipBindingSource
+            // clipboardMonitor
             // 
-            this.clipBindingSource.DataSource = typeof(CopyStand.Clipboard.Clip);
+            this.clipboardMonitor.BackColor = System.Drawing.Color.Red;
+            this.clipboardMonitor.Location = new System.Drawing.Point(177, 160);
+            this.clipboardMonitor.Name = "clipboardMonitor";
+            this.clipboardMonitor.Size = new System.Drawing.Size(77, 60);
+            this.clipboardMonitor.TabIndex = 3;
+            this.clipboardMonitor.Text = "Clipboard Monitor";
+            this.clipboardMonitor.Visible = false;
+            this.clipboardMonitor.ClipboardChanged += new System.EventHandler<CopyStand.Clipboard.ClipboardChangedEventArgs>(this.clipboardMonitor_ClipboardChanged);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(604, 364);
+            this.Controls.Add(this.clipboardMonitor);
             this.Controls.Add(this.toolStrip);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.lstClips);
@@ -167,7 +173,6 @@
             this.statusStrip.PerformLayout();
             this.toolStrip.ResumeLayout(false);
             this.toolStrip.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.clipBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -186,7 +191,7 @@
         private System.Windows.Forms.ToolStripButton btnStopServer;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton btnCopy;
-        private System.Windows.Forms.BindingSource clipBindingSource;
+        private Clipboard.ClipboardMonitor clipboardMonitor;
 
     }
 }

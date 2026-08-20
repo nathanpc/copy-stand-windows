@@ -88,6 +88,11 @@ namespace CopyStand
             CopySelectedItem();
         }
 
+        private void clipboardMonitor_ClipboardChanged(object sender, ClipboardChangedEventArgs e)
+        {
+            manager.HandleClipboardChanged(e.DataObject);
+        }
+
         #endregion
     }
 }

@@ -43,6 +43,9 @@
   <ItemGroup>
     <Compile Include="Clipboard\Clip.cs" />
     <Compile Include="Clipboard\ClipboardManager.cs" />
+    <Compile Include="Clipboard\ClipboardMonitor.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
