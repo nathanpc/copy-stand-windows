@@ -44,7 +44,13 @@ namespace CopyStand.Clipboard
         {
             try
             {
-                AddItem(Clip.FromClipboard(data));
+                // Get clipboard data and check if it's something we already have.
+                Clip clip = Clip.FromClipboard(data);
+                if (clip.Data == Clips[0].Data)
+                    return false;
+
+                // Add clip to our history.
+                AddItem(clip);
                 return true;
             }
             catch (Exception e)
