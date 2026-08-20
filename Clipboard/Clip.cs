@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using System.Text;
 using System.Windows.Forms;
 
@@ -70,6 +71,27 @@ namespace CopyStand.Clipboard
         public ListViewItem ToListViewItem()
         {
             return new ListViewItem(new string[] { Timestamp.ToLongTimeString(), Data, Device });
+        }
+
+        /// <summary>
+        /// Encodes the object into a string that can be used to serialize and
+        /// deserialize this object.
+        /// </summary>
+        /// <returns>String-encoded version of this object.</returns>
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            sb.Append((int)Timestamp.ToUniversalTime().Subtract(
+                new DateTime(1970, 1, 1)).TotalSeconds);
+            sb.Append("\t");
+            sb.Append(Device);
+            sb.Append("\t");
+            sb.Append(Encoding.UTF8.GetByteCount(Data));
+            sb.Append("\t");
+            sb.Append(Data);
+
+            return sb.ToString();
         }
 
         /// <summary>
