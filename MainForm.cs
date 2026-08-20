@@ -26,7 +26,7 @@ namespace CopyStand
             InitializeComponent();
             manager.ClipsListUpdated += OnClipsListUpdated;
 
-            manager.Append(new Clip("A thing!"));
+            manager.AddItem(new Clip("A thing!"));
         }
 
         /// <summary>

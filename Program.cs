@@ -15,11 +15,15 @@ namespace CopyStand
         {
             // Initialize the clipboard manager.
             ClipboardManager manager = new ClipboardManager();
+            manager.StartWatcher();
 
             // Initialize the application.
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainForm(manager));
+
+            // Stop the clipboard watcher.
+            manager.StopWatcher();
         }
     }
 }
