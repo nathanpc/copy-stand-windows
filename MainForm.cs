@@ -27,6 +27,7 @@ namespace CopyStand
             manager.ClipsListUpdated += OnClipsListUpdated;
 
             manager.AddItem(new Clip("A thing!"));
+            manager.StartSyncServer();
         }
 
         /// <summary>

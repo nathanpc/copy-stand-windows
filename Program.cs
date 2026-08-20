@@ -20,6 +20,9 @@ namespace CopyStand
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainForm(manager));
+
+            // Ensure that the background synchronization server has been stopped.
+            manager.StopSyncServer();
         }
     }
 }

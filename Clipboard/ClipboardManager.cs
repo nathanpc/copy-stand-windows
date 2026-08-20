@@ -1,7 +1,11 @@
 ﻿using System;
-using System.Threading;
 using System.Collections.Generic;
+using System.Net;
+using System.Net.NetworkInformation;
+using System.Net.Sockets;
+using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace CopyStand.Clipboard
@@ -12,8 +16,18 @@ namespace CopyStand.Clipboard
     public class ClipboardManager
     {
         private List<Clip> _clips;
+        private UdpClient udp;
+        private Thread syncThread;
 
+        /// <summary>
+        /// Event that is fired whenever our internal history gets updated.
+        /// </summary>
         public event EventHandler ClipsListUpdated;
+
+        /// <summary>
+        /// Default Copy Stand broadcast port.
+        /// </summary>
+        public static int ServerPort = 1288;
 
         /// <summary>
         /// Initializes the clipboard manager.
@@ -21,6 +35,13 @@ namespace CopyStand.Clipboard
         public ClipboardManager()
         {
             _clips = new List<Clip>();
+
+            // Setup the server socket.
+            udp = new UdpClient();
+            udp.Client.Bind(new IPEndPoint(IPAddress.Any, ServerPort));
+
+            // Setup synchronization server thread.
+            syncThread = new Thread(SynchronizationThread);
         }
 
         /// <summary>
@@ -32,6 +53,17 @@ namespace CopyStand.Clipboard
             Clips.Insert(0, clip);
             // TODO: Drop older items if needed.
             ClipsListUpdated(this, null);
+            BroadcastUpdate(clip);
+        }
+
+        /// <summary>
+        /// Broadcasts an updated clipboard item over the network.
+        /// </summary>
+        /// <param name="clip">Clip object to be broadcast over the network.</param>
+        public void BroadcastUpdate(Clip clip)
+        {
+            byte[] buf = Encoding.UTF8.GetBytes(clip.ToString());
+            udp.Send(buf, buf.Length, "255.255.255.255", ServerPort);
         }
 
         /// <summary>
@@ -57,6 +89,63 @@ namespace CopyStand.Clipboard
             {
                 return false;
             }
+        }
+
+        /// <summary>
+        /// Starts up the background synchronization server.
+        /// </summary>
+        public void StartSyncServer()
+        {
+            syncThread.Start();
+        }
+
+        /// <summary>
+        /// Stops the background synchronization server.
+        /// </summary>
+        public void StopSyncServer()
+        {
+            syncThread.Abort();
+        }
+
+        /// <summary>
+        /// Background synchronization thread function.
+        /// </summary>
+        private void SynchronizationThread()
+        {
+            IPEndPoint remote = new IPEndPoint(0, 0);
+            while (true)
+            {
+                byte[] recv = udp.Receive(ref remote);
+                if (!IsLocalhost(remote.Address))
+                {
+                    System.Diagnostics.Debug.WriteLine(Encoding.UTF8.GetString(recv));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Checks if an IP address corresponds to ourselves.
+        /// </summary>
+        /// <param name="remote">IP address to be checked.</param>
+        /// <returns>True if the IP address corresponds to ourselves, false otherwise.</returns>
+        private static bool IsLocalhost(IPAddress remote)
+        {
+            foreach (NetworkInterface item in NetworkInterface.GetAllNetworkInterfaces())
+            {
+                if (item.OperationalStatus == OperationalStatus.Up)
+                {
+                    foreach (UnicastIPAddressInformation ip in item.GetIPProperties().UnicastAddresses)
+                    {
+                        if (ip.Address.AddressFamily == AddressFamily.InterNetwork &&
+                            remote.Equals(ip.Address))
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+
+            return false;
         }
 
         /// <summary>
