@@ -53,7 +53,17 @@ namespace CopyStand
         /// <param name="e">Ignored. Always null.</param>
         private void OnClipsListUpdated(object sender, EventArgs e)
         {
-            lstClips.VirtualListSize = manager.Clips.Count;
+            if (lstClips.InvokeRequired)
+            {
+                lstClips.Invoke((MethodInvoker)delegate
+                {
+                    lstClips.VirtualListSize = manager.Clips.Count;
+                });
+            }
+            else
+            {
+                lstClips.VirtualListSize = manager.Clips.Count;
+            }
         }
 
         /// <summary>
