@@ -24,7 +24,11 @@ namespace CopyStand
         {
             manager = clipboardManager;
             InitializeComponent();
+
+            // Register clipboard manager event handlers.
             manager.ClipsListUpdated += OnClipsListUpdated;
+            manager.ServerStarted += OnServerStarted;
+            manager.ServerStopped += OnServerStopped;
 
             // Initialize the clipboard manager with the current clipboard contents.
             manager.StartSyncServer();
@@ -73,6 +77,20 @@ namespace CopyStand
             }
         }
 
+        private void OnServerStarted(object sender, EventArgs e)
+        {
+            btnStartServer.Enabled = false;
+            btnStopServer.Enabled = true;
+            lblServerStatus.Text = "Sync Server Running";
+        }
+
+        private void OnServerStopped(object sender, EventArgs e)
+        {
+            btnStartServer.Enabled = true;
+            btnStopServer.Enabled = false;
+            lblServerStatus.Text = "Sync Server Stopped";
+        }
+
         /// <summary>
         /// Event that happens whenever the ListView needs to show an item from
         /// the clipboard manager.
@@ -86,14 +104,12 @@ namespace CopyStand
 
         private void btnStartServer_Click(object sender, EventArgs e)
         {
-            // TODO: Actually start the server.
-            lblServerStatus.Text = "Server Running";
+            manager.StartSyncServer();
         }
 
         private void btnStopServer_Click(object sender, EventArgs e)
         {
-            // TODO: Actually stop the server.
-            lblServerStatus.Text = "Server Stopped";
+            manager.StopSyncServer();
         }
 
         private void btnCopy_Click(object sender, EventArgs e)

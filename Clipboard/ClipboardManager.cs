@@ -24,6 +24,16 @@ namespace CopyStand.Clipboard
         public event EventHandler ClipsListUpdated;
 
         /// <summary>
+        /// Event fired whenever the background synchronization server starts.
+        /// </summary>
+        public event EventHandler ServerStarted;
+
+        /// <summary>
+        /// Event fired whenever the background synchronization server stops.
+        /// </summary>
+        public event EventHandler ServerStopped;
+
+        /// <summary>
         /// Default Copy Stand broadcast port.
         /// </summary>
         public static int ServerPort = 1288;
@@ -34,14 +44,6 @@ namespace CopyStand.Clipboard
         public ClipboardManager()
         {
             _clips = new List<Clip>();
-
-            // Setup the server socket.
-            udp = new UdpClient();
-            udp.Client.Bind(new IPEndPoint(IPAddress.Any, ServerPort));
-
-            // Setup synchronization server thread.
-            syncThread = new Thread(SynchronizationThread);
-            syncThread.SetApartmentState(ApartmentState.STA);
         }
 
         /// <summary>
@@ -101,7 +103,7 @@ namespace CopyStand.Clipboard
                 AddItem(clip);
                 return true;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return false;
             }
@@ -112,7 +114,18 @@ namespace CopyStand.Clipboard
         /// </summary>
         public void StartSyncServer()
         {
+            // Start listening for UDP packets.
+            udp = new UdpClient();
+            udp.Client.Bind(new IPEndPoint(IPAddress.Any, ServerPort));
+
+            // Setup and start synchronization server thread.
+            syncThread = new Thread(SynchronizationThread);
+            syncThread.SetApartmentState(ApartmentState.STA);
             syncThread.Start();
+
+            // Notify others that the server has started.
+            if (syncThread.IsAlive)
+                ServerStarted(this, null);
         }
 
         /// <summary>
@@ -120,8 +133,18 @@ namespace CopyStand.Clipboard
         /// </summary>
         public void StopSyncServer()
         {
+            // Terminate the background synchronization thread and close the UDP socket.
             syncThread.Abort();
+            udp.Client.Shutdown(SocketShutdown.Both);
+            udp.Client.Close();
             udp.Close();
+
+            // Nullify all related objects.
+            udp = null;
+            syncThread = null;
+
+            // Notify others that the server has stopped.
+            ServerStopped(this, null);
         }
 
         /// <summary>
