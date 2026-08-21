@@ -57,12 +57,18 @@ namespace CopyStand
             {
                 lstClips.Invoke((MethodInvoker)delegate
                 {
+                    if (lstClips.VirtualListSize == manager.Clips.Count)
+                        lstClips.VirtualListSize = 0;
                     lstClips.VirtualListSize = manager.Clips.Count;
+                    lstClips.Refresh();
                 });
             }
             else
             {
+                if (lstClips.VirtualListSize == manager.Clips.Count)
+                    lstClips.VirtualListSize = 0;
                 lstClips.VirtualListSize = manager.Clips.Count;
+                lstClips.Refresh();
             }
         }
 

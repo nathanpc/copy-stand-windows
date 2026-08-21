@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
-using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
@@ -54,7 +53,8 @@ namespace CopyStand.Clipboard
         {
             // Update our internal history of clips.
             Clips.Insert(0, clip);
-            // TODO: Drop older items if needed.
+            if (Clips.Count > Settings.HistoryLimit)
+                Clips.Capacity = Settings.HistoryLimit;
             ClipsListUpdated(this, null);
 
             // Broadcast the update over the network.
@@ -143,7 +143,7 @@ namespace CopyStand.Clipboard
 
                     // Add to our clips history and update the system's clipboard.
                     Clip clip = Clip.FromSerializedString(data);
-					AddItem(clip, false);
+                    AddItem(clip, false);
                     System.Windows.Forms.Clipboard.SetText(clip.Data);
                 }
             }
