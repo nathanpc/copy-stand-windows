@@ -121,6 +121,7 @@ namespace CopyStand.Clipboard
         public void StopSyncServer()
         {
             syncThread.Abort();
+            udp.Close();
         }
 
         /// <summary>
