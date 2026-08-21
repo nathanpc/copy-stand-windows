@@ -80,7 +80,7 @@ namespace CopyStand.Clipboard
             DateTime dt = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
             dt = dt.AddSeconds(double.Parse(parts[0])).ToLocalTime();
 
-            return new Clip(dt, parts[2], parts[1]);
+            return new Clip(dt, parts[3], parts[1]);
         }
 
         /// <summary>

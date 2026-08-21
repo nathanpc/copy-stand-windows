@@ -94,7 +94,7 @@ namespace CopyStand.Clipboard
             {
                 // Get clipboard data and check if it's something we already have.
                 Clip clip = Clip.FromClipboard(data);
-                if (clip.Data == Clips[0].Data)
+                if ((clip.Data.Length == 0) || (clip.Data == Clips[0].Data))
                     return false;
 
                 // Add clip to our history.
@@ -141,8 +141,9 @@ namespace CopyStand.Clipboard
                     System.Diagnostics.Debug.WriteLine(data);
 
                     // Add to our clips history and update the system's clipboard.
-                    AddItem(Clip.FromSerializedString(data), false);
-                    System.Windows.Forms.Clipboard.SetText(data);
+                    Clip clip = Clip.FromSerializedString(data);
+					AddItem(clip, false);
+                    System.Windows.Forms.Clipboard.SetText(clip.Data);
                 }
             }
         }
