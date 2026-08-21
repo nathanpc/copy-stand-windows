@@ -94,7 +94,7 @@ namespace CopyStand.Clipboard
             {
                 // Get clipboard data and check if it's something we already have.
                 Clip clip = Clip.FromClipboard(data);
-                if ((clip.Data.Length == 0) || (clip.Data == Clips[0].Data))
+                if ((clip.Data.Length == 0) || ((Clips.Count > 0) && (clip.Data == Clips[0].Data)))
                     return false;
 
                 // Add clip to our history.

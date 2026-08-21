@@ -26,8 +26,9 @@ namespace CopyStand
             InitializeComponent();
             manager.ClipsListUpdated += OnClipsListUpdated;
 
-            manager.AddItem(new Clip("A thing!"));
+            // Initialize the clipboard manager with the current clipboard contents.
             manager.StartSyncServer();
+            try { manager.AddItem(Clip.FromClipboard()); } catch (Exception) { }
         }
 
         /// <summary>
