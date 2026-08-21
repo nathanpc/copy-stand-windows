@@ -80,6 +80,11 @@ namespace CopyStand.Clipboard
         /// <param name="clip">Clip object to be broadcast over the network.</param>
         public void BroadcastUpdate(Clip clip)
         {
+            // Determine if we are blocked from broadcasting.
+            if (Settings.SyncDirection == SyncDirection.ReceiveOnly)
+                return;
+
+            // Broadcast the serialized clip object.
             byte[] buf = Encoding.UTF8.GetBytes(clip.ToString());
             udp.Send(buf, buf.Length, "255.255.255.255", ServerPort);
         }
@@ -159,7 +164,8 @@ namespace CopyStand.Clipboard
                 byte[] recv = udp.Receive(ref remote);
 
                 // Ignore transmissions from ourselves.
-                if (!IsLocalhost(remote.Address))
+                if ((Settings.SyncDirection != SyncDirection.TransmitOnly) &&
+                    !IsLocalhost(remote.Address))
                 {
                     string data = Encoding.UTF8.GetString(recv);
                     System.Diagnostics.Debug.WriteLine(data);

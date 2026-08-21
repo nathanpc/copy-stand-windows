@@ -10,6 +10,7 @@ namespace CopyStand
     public static class Settings
     {
         private static int _historyLimit;
+        private static SyncDirection _syncDirection;
 
         /// <summary>
         /// Initializes the settings with registry data, or defaults if registry
@@ -18,6 +19,7 @@ namespace CopyStand
         static Settings()
         {
             _historyLimit = 50;
+            _syncDirection = SyncDirection.Bidirectional;
         }
 
         /// <summary>
@@ -28,5 +30,24 @@ namespace CopyStand
             get { return _historyLimit; }
             set { _historyLimit = value; }
         }
+
+        /// <summary>
+        /// Synchronization direction for the background synchronization server.
+        /// </summary>
+        public static SyncDirection SyncDirection
+        {
+            get { return _syncDirection; }
+            set { _syncDirection = value; }
+        }
+    }
+
+    /// <summary>
+    /// Synchronization direction for the background synchronization server.
+    /// </summary>
+    public enum SyncDirection
+    {
+        Bidirectional = 0,
+        ReceiveOnly = 1,
+        TransmitOnly = 2
     }
 }

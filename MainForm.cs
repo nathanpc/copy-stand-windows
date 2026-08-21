@@ -24,6 +24,7 @@ namespace CopyStand
         {
             manager = clipboardManager;
             InitializeComponent();
+            SetSyncDirectionComboBox(Settings.SyncDirection);
 
             // Register clipboard manager event handlers.
             manager.ClipsListUpdated += OnClipsListUpdated;
@@ -47,6 +48,29 @@ namespace CopyStand
             // Copy the currently selected item to the clipboard;
             Clip clip = manager.Clips[lstClips.SelectedIndices[0]];
             System.Windows.Forms.Clipboard.SetText(clip.Data);
+        }
+
+        /// <summary>
+        /// Sets the selected item in the synchronization direction ComboBox in
+        /// the ToolStrip.
+        /// </summary>
+        /// <param name="direction">Synchronization direction.</param>
+        public void SetSyncDirectionComboBox(SyncDirection direction)
+        {
+            switch (direction)
+            {
+                case SyncDirection.Bidirectional:
+                    cmbSyncDirection.SelectedIndex = 0;
+                    break;
+                case SyncDirection.ReceiveOnly:
+                    cmbSyncDirection.SelectedIndex = 1;
+                    break;
+                case SyncDirection.TransmitOnly:
+                    cmbSyncDirection.SelectedIndex = 2;
+                    break;
+                default:
+                    throw new Exception("Unknown sync direction index");
+            }
         }
 
         #region Event Handlers
@@ -125,6 +149,24 @@ namespace CopyStand
         private void clipboardMonitor_ClipboardChanged(object sender, ClipboardChangedEventArgs e)
         {
             manager.HandleClipboardChanged(e.DataObject);
+        }
+
+        private void cmbSyncDirection_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (cmbSyncDirection.SelectedIndex)
+            {
+                case 0:
+                    Settings.SyncDirection = SyncDirection.Bidirectional;
+                    break;
+                case 1:
+                    Settings.SyncDirection = SyncDirection.ReceiveOnly;
+                    break;
+                case 2:
+                    Settings.SyncDirection = SyncDirection.TransmitOnly;
+                    break;
+                default:
+                    throw new Exception("Unknown sync direction index selected");
+            }
         }
 
         #endregion

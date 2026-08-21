@@ -38,6 +38,7 @@
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.btnStartServer = new System.Windows.Forms.ToolStripButton();
             this.btnStopServer = new System.Windows.Forms.ToolStripButton();
+            this.cmbSyncDirection = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btnCopy = new System.Windows.Forms.ToolStripButton();
             this.clipboardMonitor = new CopyStand.Clipboard.ClipboardMonitor();
@@ -57,6 +58,7 @@
             this.colDevice});
             this.lstClips.FullRowSelect = true;
             this.lstClips.GridLines = true;
+            this.lstClips.HideSelection = false;
             this.lstClips.LabelWrap = false;
             this.lstClips.Location = new System.Drawing.Point(0, 25);
             this.lstClips.Margin = new System.Windows.Forms.Padding(0);
@@ -106,6 +108,7 @@
             this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnStartServer,
             this.btnStopServer,
+            this.cmbSyncDirection,
             this.toolStripSeparator1,
             this.btnCopy});
             this.toolStrip.Location = new System.Drawing.Point(0, 0);
@@ -133,6 +136,19 @@
             this.btnStopServer.Size = new System.Drawing.Size(23, 22);
             this.btnStopServer.Text = "Stop Server";
             this.btnStopServer.Click += new System.EventHandler(this.btnStopServer_Click);
+            // 
+            // cmbSyncDirection
+            // 
+            this.cmbSyncDirection.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cmbSyncDirection.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cmbSyncDirection.Items.AddRange(new object[] {
+            "Bidirectional",
+            "Receive Only",
+            "Transmit Only"});
+            this.cmbSyncDirection.Name = "cmbSyncDirection";
+            this.cmbSyncDirection.Size = new System.Drawing.Size(121, 25);
+            this.cmbSyncDirection.ToolTipText = "Synchronization Direction";
+            this.cmbSyncDirection.SelectedIndexChanged += new System.EventHandler(this.cmbSyncDirection_SelectedIndexChanged);
             // 
             // toolStripSeparator1
             // 
@@ -195,7 +211,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton btnCopy;
         private Clipboard.ClipboardMonitor clipboardMonitor;
-
+        private System.Windows.Forms.ToolStripComboBox cmbSyncDirection;
     }
 }
 
