@@ -41,10 +41,7 @@ namespace CopyStand.Clipboard
         /// <returns>Clip object with data from clipboard.</returns>
         public static Clip FromClipboard()
         {
-            if (!System.Windows.Forms.Clipboard.ContainsText())
-                throw new Exception("Data in clipboard does not contain text");
-
-            return new Clip(System.Windows.Forms.Clipboard.GetText());
+            return FromClipboard(System.Windows.Forms.Clipboard.GetDataObject());
         }
 
         /// <summary>
@@ -59,7 +56,7 @@ namespace CopyStand.Clipboard
 
             // Get the string from the data and ensure there is something there for us.
             string str = (string)data.GetData("System.String");
-            if (str == null)
+            if ((str == null) || (str.Length == 0))
                 throw new Exception("No text contained in the data from the clipboard");
 
             return new Clip(str);
