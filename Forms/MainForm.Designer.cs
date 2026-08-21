@@ -42,6 +42,8 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btnCopy = new System.Windows.Forms.ToolStripButton();
             this.clipboardMonitor = new CopyStand.Clipboard.ClipboardMonitor();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnAbout = new System.Windows.Forms.ToolStripButton();
             this.statusStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.SuspendLayout();
@@ -110,7 +112,9 @@
             this.btnStopServer,
             this.cmbSyncDirection,
             this.toolStripSeparator1,
-            this.btnCopy});
+            this.btnCopy,
+            this.toolStripSeparator2,
+            this.btnAbout});
             this.toolStrip.Location = new System.Drawing.Point(0, 0);
             this.toolStrip.Name = "toolStrip";
             this.toolStrip.Size = new System.Drawing.Size(604, 25);
@@ -176,6 +180,21 @@
             this.clipboardMonitor.Visible = false;
             this.clipboardMonitor.ClipboardChanged += new System.EventHandler<CopyStand.Clipboard.ClipboardChangedEventArgs>(this.clipboardMonitor_ClipboardChanged);
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // btnAbout
+            // 
+            this.btnAbout.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnAbout.Image = ((System.Drawing.Image)(resources.GetObject("btnAbout.Image")));
+            this.btnAbout.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnAbout.Name = "btnAbout";
+            this.btnAbout.Size = new System.Drawing.Size(23, 22);
+            this.btnAbout.Text = "About...";
+            this.btnAbout.Click += new System.EventHandler(this.btnAbout_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -212,6 +231,8 @@
         private System.Windows.Forms.ToolStripButton btnCopy;
         private Clipboard.ClipboardMonitor clipboardMonitor;
         private System.Windows.Forms.ToolStripComboBox cmbSyncDirection;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripButton btnAbout;
     }
 }
 

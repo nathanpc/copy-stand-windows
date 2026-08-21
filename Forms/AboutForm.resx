@@ -112,28 +112,36 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="AppIconFluent" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icons\Application\app-icon-fluent.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="CodeRepoWebsite" xml:space="preserve">
-    <value>https://github.com/nathanpc/copy-stand-windows</value>
-  </data>
-  <data name="DeveloperWebsite" xml:space="preserve">
-    <value>https://nathancampos.me/</value>
-  </data>
-  <data name="Vista_ClipAdd" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\icons\vista\clipboard_add.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Vista_Start" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\icons\vista\media_play_green.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Vista_Stop" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\icons\vista\media_stop_red.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="picAppIcon.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAAElUlEQVR4Xu2dS24aWRSGs4Qs
+        wTNgFMCS7XT34NoDqOJZVBUPJxNvIA5+d7e6pTKY95tyxcyyBC+BJWQJXoKXcFqFqJJ1/OLWtfpG4XzS
+        NzO/rPOHBGLr5907giAIgiCIVdhlexu7bI894wb+euIN2WV7o122B69o4ccRb4B72CeO/ZwafjwhyC7b
+        u3/i0M/5Az+eEGD59zs+8oviDEIAKkAyVIBkqADJUAGSoQIks721o/3+2x/AYyQUfo9ziABEQuGDSCjs
+        HpTX+0goTG/IRIiEwuyJw/LolkDPhKBEQmHriaPyynDu2mM7s/e2M7u1ndn8OafXN/NavXl3fvE3nF/8
+        BWfnf8LpmesFnJy6nsPxyRkcHZ9B9egUqkcn8LXqegyHX4/hy+ERfDmswj//Wj9qV635Zb05t2qN57y1
+        ao31eaYsjw8vOb2+gYn9DcZTB0aTaxiO7YWD0RT6wwn0BmPo9kfQ6Q2h3R0sbHX60Gz3oNHqwlWzA/VG
+        e2HtqgWX9SZYtcZL3uLv85dl+af80dElF7A+/4H3kxYwx9/nLwsVIBkqQDL0j7Bkli9DX3wW/M8FuC9F
+        1+dl6KrEPkSt2IcoCEpvxIISj8aseDQGglIBQdmMxa3NWBwEpQKC8kYFHOBcYkXc4z1xUF7pt+VE2IzF
+        508cdVVHOI8IwM7WtvVx+yPsbG2vpPu1m7E4/TDmrUgkFJZIKMAjziAESCYUlkwowCPOIARIJlWWTKrA
+        I84gBFCSKlOSKvCIMwgBFCXFFCUFPOIMQgBVSTFVSQGPOIMQQFXTTFXTwCPOIARIqWmWUtPAI84gBEil
+        MiyVygCPOIMQgAqQTDqdZel0FnjEGYQAVIBkMpkcy2RywCPOIASgAiSTzeZZNpsHHnEGIQAVIJlcTmO5
+        nAY84gxCACpAMvl8geXzBeARZxACUAGSyWs6y2s68IgzCAE0TWeapgOPOIMQQCsYTCsYwCPOIAQoFAxW
+        KBjAI84gBCjoJivoJvCIMwgBdN1kum4CjziDEEA3ikw3isAjziAEMIwiM4wi8IgzCAEMs8QMswQ84gxC
+        ANMsMdMsAY84gxDALJaZWSwDjziDEIAKkEyxVGHFUgV4xBmEAFSAZErlfVYq7wOPOIMQgAqQTLnyiZUr
+        n4BHnEEIQAVIprL/mVX2PwOPOIMQgAqQDBUgGSpAMlSAZNa2ANuZRW1n9t12Znd4021V3e03T3cDztPd
+        gvP24Dy9XThvG87bh/N0d+I83b04bzPO09uO8/bjvA05T3dLztPdlHu4K+dty3m6G3Ov7My95p1Va3y3
+        ao0ovutK2M7sAB8ziGtcwEP5RqOWq4b3+JhBpAIW3nOtMtrOjOFDBpUK8F19u44KoAKoAHzIoFIBvlQA
+        FUAFrMbyDdijYwaRCvDle0O2ysT8KlIBC/mn8R980tGjo/JIBQh+QpPtzDZsZ1a1nZkVxOn1je/E/uY7
+        njoLR5Nr3+HY9h2Mpgv7w4lvbzD27fZHCzu9oW+7O/BtdfoLm+2eb6PV9b1qdhbWG23f2lXL97LeXGjV
+        GkGtWrUGzSYTBEEQxM/Kf/QzPkcWXRfPAAAAAElFTkSuQmCC
+</value>
   </data>
 </root>

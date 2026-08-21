@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using CopyStand.Clipboard;
+using CopyStand.Forms;
 
 namespace CopyStand
 {
@@ -167,6 +168,12 @@ namespace CopyStand
                 default:
                     throw new Exception("Unknown sync direction index selected");
             }
+        }
+
+        private void btnAbout_Click(object sender, EventArgs e)
+        {
+            AboutForm dlg = new AboutForm();
+            dlg.ShowDialog(this);
         }
 
         #endregion
