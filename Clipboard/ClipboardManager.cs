@@ -42,18 +42,34 @@ namespace CopyStand.Clipboard
 
             // Setup synchronization server thread.
             syncThread = new Thread(SynchronizationThread);
+            syncThread.SetApartmentState(ApartmentState.STA);
         }
 
         /// <summary>
         /// Appends a new item to the clipboard items list.
         /// </summary>
         /// <param name="clip">Clipboard item to be added to the list.</param>
-        public void AddItem(Clip clip)
+        /// <param name="broadcast">Should we broadcast this update over the network?</param>
+        public void AddItem(Clip clip, bool broadcast)
         {
+            // Update our internal history of clips.
             Clips.Insert(0, clip);
             // TODO: Drop older items if needed.
             ClipsListUpdated(this, null);
-            BroadcastUpdate(clip);
+
+            // Broadcast the update over the network.
+            if (broadcast)
+                BroadcastUpdate(clip);
+        }
+
+        /// <summary>
+        /// Appends a new item to the clipboard items list and broadcast the
+        /// change over the network.
+        /// </summary>
+        /// <param name="clip">Clipboard item to be added to the list.</param>
+        public void AddItem(Clip clip)
+        {
+            AddItem(clip, true);
         }
 
         /// <summary>
@@ -115,10 +131,18 @@ namespace CopyStand.Clipboard
             IPEndPoint remote = new IPEndPoint(0, 0);
             while (true)
             {
+                // Receive broadcasted clipboard data.
                 byte[] recv = udp.Receive(ref remote);
+
+                // Ignore transmissions from ourselves.
                 if (!IsLocalhost(remote.Address))
                 {
-                    System.Diagnostics.Debug.WriteLine(Encoding.UTF8.GetString(recv));
+                    string data = Encoding.UTF8.GetString(recv);
+                    System.Diagnostics.Debug.WriteLine(data);
+
+                    // Add to our clips history and update the system's clipboard.
+                    AddItem(Clip.FromSerializedString(data), false);
+                    System.Windows.Forms.Clipboard.SetText(data);
                 }
             }
         }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Security.Cryptography;
 using System.Text;
 using System.Windows.Forms;
@@ -62,6 +63,24 @@ namespace CopyStand.Clipboard
                 throw new Exception("No text contained in the data from the clipboard");
 
             return new Clip(str);
+        }
+
+        /// <summary>
+        /// Creates a Clip object from a previous object that was turned into a
+        /// serialized string.
+        /// </summary>
+        /// <param name="serialized">Clip object represented as a string.</param>
+        /// <returns>Clip object representing the original string.</returns>
+        public static Clip FromSerializedString(string serialized)
+        {
+            // Split the serialized string into its parts.
+            string[] parts = serialized.Split('\t');
+
+            // Convert the UNIX timestamp to a DateTime object.
+            DateTime dt = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+            dt = dt.AddSeconds(double.Parse(parts[0])).ToLocalTime();
+
+            return new Clip(dt, parts[2], parts[1]);
         }
 
         /// <summary>
